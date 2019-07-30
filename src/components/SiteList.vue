@@ -1,12 +1,18 @@
 <template>
   <div>
-    <button v-on:click="addSite">ADD</button>
+    <v-btn v-on:click="addSite" class="ma-2" tile outlined color="blue">
+      <v-icon left dark>mdi-plus</v-icon>ADD
+    </v-btn>
     <h5>Site List</h5>
     <ul>
       <li v-for="(site) in sites" v-bind:key="site.id">
         <a v-bind:href="site.url" target="_blank">{{ site.name }}</a>
-        <button v-on:click="editSite(site.id)">EDIT</button>
-        <button v-on:click="deleteSite(site.id)">DEL</button>
+        <v-btn v-on:click="editSite(site.id)" class="ma-2" tile outlined color="green">
+          <v-icon left>mdi-pencil</v-icon>EDIT
+        </v-btn>
+        <v-btn v-on:click="deleteSite(site.id)" class="ma-2" tile outlined color="red">
+          <v-icon left>mdi-delete</v-icon>DEL
+        </v-btn>
       </li>
     </ul>
   </div>
