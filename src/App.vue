@@ -1,18 +1,21 @@
 <template>
   <v-app>
     <v-app-bar app>
-      <v-toolbar-title class="headline text-uppercase">
-        <span>Vuetify</span>
-        <span class="font-weight-light">MATERIAL DESIGN</span>
+      <v-toolbar-title class="headline">
+        <span class="font-weight-light">localportalV2</span>
       </v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-btn text href="https://github.com/vuetifyjs/vuetify/releases/latest" target="_blank">
-        <span class="mr-2">Latest Release</span>
+      <v-btn text href="https://github.com/yasugahira0810/localportalv2" target="_blank">
+        <span class="mr-2">GitHub</span>
       </v-btn>
     </v-app-bar>
 
     <v-content>
-      <router-view></router-view>
+      <v-container fluid>
+        <v-layout align-center justify-center>
+          <router-view></router-view>
+        </v-layout>
+      </v-container>
     </v-content>
   </v-app>
 </template>
