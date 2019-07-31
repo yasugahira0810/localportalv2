@@ -4,7 +4,9 @@
     <br>
     <input v-model="siteName" placeholder="Site Name">
     <input v-model="siteURL" placeholder="SiteURL">
-    <button v-on:click="editSite()">EDIT</button>
+    <v-btn v-on:click="editSite()" text icon color="green">
+      <v-icon>mdi-check-circle</v-icon>
+    </v-btn>
   </div>
 </template>
 <script>
