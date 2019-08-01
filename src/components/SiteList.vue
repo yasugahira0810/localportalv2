@@ -1,20 +1,30 @@
 <template>
-  <div>
+  <v-card max-width="600" class="mx-auto">
     <v-btn v-on:click="addSite" class="ma-2" tile outlined color="blue">
       <v-icon left dark>mdi-plus</v-icon>ADD
     </v-btn>
-    <ul>
-      <li v-for="(site) in sites" v-bind:key="site.id">
-        <a v-bind:href="site.url" target="_blank">{{ site.name }}</a>
-        <v-btn v-on:click="editSite(site.id)" class="ma-2" tile outlined color="green">
-          <v-icon left>mdi-pencil</v-icon>EDIT
-        </v-btn>
-        <v-btn v-on:click="deleteSite(site.id)" class="ma-2" tile outlined color="red">
-          <v-icon left>mdi-delete</v-icon>DEL
-        </v-btn>
-      </li>
-    </ul>
-  </div>
+    <v-flex xs12>
+      <v-hover v-slot:default="{ hover }">
+        <v-list>
+          <v-list-item v-for="(site) in sites" v-bind:key="site.id" @click>
+            <v-list-item-content>
+              <a v-bind:href="site.url" target="_blank">{{ site.name }}</a>
+            </v-list-item-content>
+            <v-list-item-action>
+              <v-btn v-on:click="editSite(site.id)" class="ma-2" tile outlined color="green">
+                <v-icon left>mdi-pencil</v-icon>EDIT
+              </v-btn>
+            </v-list-item-action>
+            <v-list-item-action>
+              <v-btn v-on:click="deleteSite(site.id)" class="ma-2" tile outlined color="red">
+                <v-icon left>mdi-delete</v-icon>DEL
+              </v-btn>
+            </v-list-item-action>
+          </v-list-item>
+        </v-list>
+      </v-hover>
+    </v-flex>
+  </v-card>
 </template>
 
 <script>
