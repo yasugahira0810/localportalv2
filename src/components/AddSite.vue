@@ -1,8 +1,8 @@
 <template>
-  <div>
-    <router-link to="/">
+  <v-card max-width="600" class="mx-auto">
+    <v-btn v-on:click="goHome()" text icon color="gray">
       <v-icon>mdi-home</v-icon>
-    </router-link>
+    </v-btn>
     <br>
     <v-form>
       <v-container grid-list-xl>
@@ -23,7 +23,7 @@
         </v-layout>
       </v-container>
     </v-form>
-  </div>
+  </v-card>
 </template>
 <script>
 export default {
@@ -53,6 +53,9 @@ export default {
           this.$router.push("/");
         })
         .catch(err => console.log(err));
+    },
+    goHome() {
+      this.$router.push("/");
     }
   }
 };
