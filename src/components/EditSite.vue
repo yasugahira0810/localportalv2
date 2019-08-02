@@ -1,13 +1,16 @@
 <template>
-  <div>
-    <router-link to="/">Back</router-link>
+  <v-card max-width="600" class="mx-auto">
+    <v-btn v-on:click="goHome()" text icon color="gray">
+      <v-icon>mdi-home</v-icon>
+    </v-btn>
+
     <br>
     <input v-model="siteName" placeholder="Site Name">
     <input v-model="siteURL" placeholder="SiteURL">
     <v-btn v-on:click="editSite()" text icon color="green">
       <v-icon>mdi-check-circle</v-icon>
     </v-btn>
-  </div>
+  </v-card>
 </template>
 <script>
 export default {
@@ -43,6 +46,9 @@ export default {
           this.$router.push("/");
         })
         .catch(err => console.log(err));
+    },
+    goHome() {
+      this.$router.push("/");
     }
   }
 };

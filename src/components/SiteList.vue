@@ -55,6 +55,9 @@ export default {
           this.sites = this.sites.filter(site => site.id !== id);
         })
         .catch(err => console.log(err));
+    },
+    goHome() {
+      this.$router.push("/");
     }
   }
 };
