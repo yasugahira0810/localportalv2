@@ -1,38 +1,59 @@
 <template>
-    <div>
-        <router-link to="/">Back</router-link>
-            <br>
-            <input v-model="siteName" placeholder="Site Name">
-                <input v-model="siteURL" placeholder="Site URL">
-                    <button v-on:click="addSite()">ADD</button>
-    </div>
+  <div>
+    <router-link to="/">
+      <v-icon>mdi-home</v-icon>
+    </router-link>
+    <br>
+    <v-form>
+      <v-container grid-list-xl>
+        <v-layout wrap>
+          <v-flex xs12 md4>
+            <v-text-field v-model="siteName" label="Site Name" required></v-text-field>
+          </v-flex>
+
+          <v-flex xs12 md4>
+            <v-text-field v-model="siteURL" label="Site URL" required></v-text-field>
+          </v-flex>
+
+          <v-flex xs12 md4>
+            <v-btn v-on:click="addSite()" text icon color="green">
+              <v-icon>mdi-check-circle</v-icon>
+            </v-btn>
+          </v-flex>
+        </v-layout>
+      </v-container>
+    </v-form>
+  </div>
 </template>
 <script>
-    export default {
-        data() {
-            return {
-                siteName: '',
-                siteURL: ''
-            }
-        }, methods: {
-            addSite() {
-                if (this.siteName === '' || this.siteURL === '') return;
-                const siteInfo = {
-                    name: this.siteName,
-                    url: this.siteURL
-                }
-                fetch('http://localhost:3000/sites', {
-                    method: 'POST',
-                    headers: {
-                        'Content-type': 'application/json'
-                    },
-                    body: JSON.stringify(siteInfo)
-                }).then(() => {
-                    this.siteName = '';
-                    this.siteURL = '';
-                    this.$router.push('/');
-                }).catch((err) => console.log(err))
-            }
-        }
+export default {
+  data() {
+    return {
+      siteName: "",
+      siteURL: ""
+    };
+  },
+  methods: {
+    addSite() {
+      if (this.siteName === "" || this.siteURL === "") return;
+      const siteInfo = {
+        name: this.siteName,
+        url: this.siteURL
+      };
+      fetch("http://localhost:3000/sites", {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json"
+        },
+        body: JSON.stringify(siteInfo)
+      })
+        .then(() => {
+          this.siteName = "";
+          this.siteURL = "";
+          this.$router.push("/");
+        })
+        .catch(err => console.log(err));
     }
+  }
+};
 </script>
