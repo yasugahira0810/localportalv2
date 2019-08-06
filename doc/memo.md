@@ -18,3 +18,8 @@ export default {
 - 単一ファイルコンポーネントをJavaScriptに変換するwebpackのloader
   - webpack: JavaScriptファイルをまとめる高機能なモジュールバンドラー
 
+
+### moment.js
+
+- moment.jsとそれをVueのfilter向けにラップしたvue-moment.jsのどちらを使うかで悩んだ。filterでmoment.js使いたいというより、全般的にmoment.js使いたかったから、とりあえずmoment.jsを使うことにした。vue-moment.jsはあまり情報もなかったので。
+- moment.jsを使った上で、new Date()のところでmoment.js呼び出してフォーマットしてしまうのではなく、new Date()のところはそのままにしておいて、後で呼び出しの際にfilterで処理するようにした。レンダリングに時間はかかりそうだが、別の箇所でフォーマット変えるなど、応用が利きそうなので。

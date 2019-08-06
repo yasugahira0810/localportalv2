@@ -8,7 +8,10 @@
         <v-list>
           <v-list-item v-for="(site) in sites" v-bind:key="site.id" @click>
             <v-list-item-content>
-              <a v-bind:href="site.url" target="_blank">{{ site.name }}</a>
+              <v-list-item-title>
+                <a v-bind:href="site.url" target="_blank">{{ site.name }}</a>
+              </v-list-item-title>
+              <v-list-item-subtitle>{{ site.date | moment }}</v-list-item-subtitle>
             </v-list-item-content>
             <v-list-item-action>
               <v-btn v-on:click="editSite(site.id)" class="ma-2" tile outlined color="green">
@@ -28,6 +31,7 @@
 </template>
 
 <script>
+import moment from "moment";
 export default {
   data() {
     return { sites: [] };
@@ -58,6 +62,11 @@ export default {
     },
     goHome() {
       this.$router.push("/");
+    }
+  },
+  filters: {
+    moment: function(date) {
+      return moment(date).format("YYYY/MM/DD hh:mm:ss");
     }
   }
 };
