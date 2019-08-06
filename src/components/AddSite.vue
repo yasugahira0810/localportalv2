@@ -26,6 +26,7 @@
   </v-card>
 </template>
 <script>
+import moment from "moment";
 export default {
   data() {
     return {
@@ -38,7 +39,8 @@ export default {
       if (this.siteName === "" || this.siteURL === "") return;
       const siteInfo = {
         name: this.siteName,
-        url: this.siteURL
+        url: this.siteURL,
+        date: new Date()
       };
       fetch("http://localhost:3000/sites", {
         method: "POST",
