@@ -1,5 +1,6 @@
 <template>
   <v-card max-width="600" class="mx-auto">
+    <link href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" rel="stylesheet">
     <v-btn v-on:click="addSite" class="ma-2" tile outlined color="blue">
       <v-icon left dark>mdi-plus</v-icon>ADD
     </v-btn>
@@ -27,7 +28,7 @@
         </v-list>
       </v-hover>
     </v-flex>
-    <v-text-field v-model="search" append-icon="mdi-search" label="Search" single-line hide-details></v-text-field>
+    <v-text-field v-model="search" append-icon="fa-search" label="Search" single-line hide-details></v-text-field>
     <v-data-table :headers="headers" :items="sites" :search="search"></v-data-table>
   </v-card>
 </template>
