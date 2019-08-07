@@ -23,3 +23,19 @@ export default {
 
 - moment.jsとそれをVueのfilter向けにラップしたvue-moment.jsのどちらを使うかで悩んだ。filterでmoment.js使いたいというより、全般的にmoment.js使いたかったから、とりあえずmoment.jsを使うことにした。vue-moment.jsはあまり情報もなかったので。
 - moment.jsを使った上で、new Date()のところでmoment.js呼び出してフォーマットしてしまうのではなく、new Date()のところはそのままにしておいて、後で呼び出しの際にfilterで処理するようにした。レンダリングに時間はかかりそうだが、別の箇所でフォーマット変えるなど、応用が利きそうなので。
+
+### アロー関数
+
+- アロー関数は基本的に無名関数の省略形
+- 無名関数？
+
+```javascript
+var hoge = function hoge(){...};	// 通常の関数
+var hoge = function (){...};			// 無名関数。関数名決めなくてよくなる
+var hoge = () => {...};						// アロー関数。functionの代わり
+```
+
+### フィルタリの参考サイト
+
+- [Vue Filter And Search | Vuetify](https://codesandbox.io/s/536mvppkq4)
+- [Vuetify公式Data tables](https://vuetifyjs.com/ja/components/data-tables)
