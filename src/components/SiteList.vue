@@ -41,7 +41,7 @@ export default {
       .then(res => res.json())
       .then(data => {
         this.sites = data;
-        console.log(this.sites);
+        console.log(JSON.stringify(this.sites));
       })
       .catch(err => console.log(err));
   },
