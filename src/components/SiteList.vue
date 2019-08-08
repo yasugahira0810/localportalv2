@@ -1,5 +1,36 @@
 <template>
   <div>
+    <v-data-table :headers="headers" :items="sites" :search="search">
+      <template v-slot:top>
+        <v-toolbar flat color="white">
+          <v-dialog v-model="dialog" max-width="500px">
+            <template v-slot:activator="{ on }">
+              <v-btn color="primary" dark class="mb-2" v-on:click="addSite">New Item</v-btn>
+            </template>
+            <v-spacer></v-spacer>
+            <v-btn color="blue darken-1" text @click="close">Cancel</v-btn>
+            <v-btn color="blue darken-1" text @click="save">Save</v-btn>
+          </v-dialog>
+
+          <v-spacer></v-spacer>
+          <v-text-field
+            v-model="search"
+            append-icon="fa-search"
+            label="Search"
+            single-line
+            hide-details
+          ></v-text-field>
+        </v-toolbar>
+      </template>
+      <template v-slot:item.action="{ item }">
+        <v-icon small class="mr-2" @click="editSite(item.id)">mdi-pencil</v-icon>
+        <v-icon small @click="deleteSite(item.id)">mdi-delete</v-icon>
+      </template>
+      <template v-slot:no-data>
+        <v-btn color="primary" @click="initialize">Reset</v-btn>
+      </template>
+    </v-data-table>
+
     <v-card max-width="600" class="mx-auto">
       <link href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" rel="stylesheet">
       <v-btn v-on:click="addSite" class="ma-2" tile outlined color="blue">
@@ -42,73 +73,6 @@
       </v-card-title>
       <v-data-table :headers="headers" :items="sites" :search="search" hide-default-header></v-data-table>
     </v-card>
-    <v-data-table
-      :headers="headers"
-      :items="sites"
-      :search="search"
-      sort-by="calories"
-      class="elevation-1"
-    >
-      <template v-slot:top>
-        <v-toolbar flat color="white">
-          <v-toolbar-title>localportalV2</v-toolbar-title>
-          <v-divider class="mx-4" inset vertical></v-divider>
-          <v-spacer></v-spacer>
-          <v-text-field
-            v-model="search"
-            append-icon="fa-search"
-            label="Search"
-            single-line
-            hide-details
-          ></v-text-field>
-          <v-spacer></v-spacer>
-          <v-dialog v-model="dialog" max-width="500px">
-            <template v-slot:activator="{ on }">
-              <v-btn color="primary" dark class="mb-2" v-on="on">New Item</v-btn>
-            </template>
-            <v-card>
-              <v-card-title>
-                <span class="headline">{{ formTitle }}</span>
-              </v-card-title>
-              <v-card-text>
-                <v-container grid-list-md>
-                  <v-layout wrap>
-                    <v-flex xs12 sm6 md4>
-                      <v-text-field v-model="editedItem.name" label="Dessert name"></v-text-field>
-                    </v-flex>
-                    <v-flex xs12 sm6 md4>
-                      <v-text-field v-model="editedItem.calories" label="Calories"></v-text-field>
-                    </v-flex>
-                    <v-flex xs12 sm6 md4>
-                      <v-text-field v-model="editedItem.fat" label="Fat (g)"></v-text-field>
-                    </v-flex>
-                    <v-flex xs12 sm6 md4>
-                      <v-text-field v-model="editedItem.carbs" label="Carbs (g)"></v-text-field>
-                    </v-flex>
-                    <v-flex xs12 sm6 md4>
-                      <v-text-field v-model="editedItem.protein" label="Protein (g)"></v-text-field>
-                    </v-flex>
-                  </v-layout>
-                </v-container>
-              </v-card-text>
-
-              <v-card-actions>
-                <v-spacer></v-spacer>
-                <v-btn color="blue darken-1" text @click="close">Cancel</v-btn>
-                <v-btn color="blue darken-1" text @click="save">Save</v-btn>
-              </v-card-actions>
-            </v-card>
-          </v-dialog>
-        </v-toolbar>
-      </template>
-      <template v-slot:item.action="{ item }">
-        <v-icon small class="mr-2" @click="editItem(item)">edit</v-icon>
-        <v-icon small @click="deleteItem(item)">delete</v-icon>
-      </template>
-      <template v-slot:no-data>
-        <v-btn color="primary" @click="initialize">Reset</v-btn>
-      </template>
-    </v-data-table>
   </div>
 </template>
 
@@ -121,16 +85,10 @@ export default {
       search: "",
       dialog: false,
       headers: [
-        {
-          text: "Dessert (100g serving)",
-          align: "left",
-          sortable: false,
-          value: "name"
-        },
-        { text: "Calories", value: "calories" },
-        { text: "Fat (g)", value: "fat" },
-        { text: "Carbs (g)", value: "carbs" },
-        { text: "Protein (g)", value: "protein" },
+        { text: "Name", value: "name" },
+        { text: "URL", value: "url" },
+        { text: "Date", value: "date" },
+        { text: "Tag", value: "tag" },
         { text: "Actions", value: "action", sortable: false }
       ],
       editedIndex: -1,
