@@ -39,3 +39,12 @@ var hoge = () => {...};						// アロー関数。functionの代わり
 
 - [Vue Filter And Search | Vuetify](https://codesandbox.io/s/536mvppkq4)
 - [Vuetify公式Data tables](https://vuetifyjs.com/ja/components/data-tables)
+
+### moment.jsを使った時刻取得
+
+- 上記「moment.js」で述べたとおり、filterでフォーマット変えるのやろうとしたが、data tableの項目にどうやってfilterをかませるかわからなかった。  
+  そこで暫定対処として、filterじゃなくてAddSite.vueで登録する時点でフォーマット決めて登録してしまおうとした。  
+  そしたら以下の警告が出て、ちょっとやった感じ警告でなくする方法がわからなかった。  
+  なので暫定対処頑張るのではなく、data tableの項目にfilterかます方向に倒そうと思う。そのうちやる。
+
+Deprecation warning: value provided is not in a recognized RFC2822 or ISO format. moment construction falls back to js Date(), which is not reliable across all browsers and versions. Non RFC2822/ISO date formats are discouraged and will be removed in an upcoming major release. Please refer to http://momentjs.com/guides/#/warnings/js-date/ for more info.
