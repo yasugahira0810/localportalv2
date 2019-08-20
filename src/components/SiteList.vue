@@ -1,67 +1,16 @@
 <template>
-  <div>
-    <v-data-table :headers="headers" :items="sites" :search="search">
-      <template v-slot:top>
-        <v-toolbar flat color="white">
-          <v-dialog v-model="dialog" max-width="500px">
-            <template v-slot:activator="{ on }">
-              <v-btn color="primary" dark class="mb-2" v-on:click="addSite">New Item</v-btn>
-            </template>
-            <v-spacer></v-spacer>
-            <v-btn color="blue darken-1" text @click="close">Cancel</v-btn>
-            <v-btn color="blue darken-1" text @click="save">Save</v-btn>
-          </v-dialog>
-
+  <v-data-table :headers="headers" :items="sites" :search="search">
+    <template v-slot:top>
+      <v-toolbar flat color="white">
+        <v-dialog v-model="dialog" max-width="500px">
+          <template v-slot:activator="{ on }">
+            <v-btn color="primary" dark class="mb-2" v-on:click="addSite">New Item</v-btn>
+          </template>
           <v-spacer></v-spacer>
-          <v-text-field
-            v-model="search"
-            append-icon="fa-search"
-            label="Search"
-            single-line
-            hide-details
-          ></v-text-field>
-        </v-toolbar>
-      </template>
-      <template v-slot:item.action="{ item }">
-        <v-icon small class="mr-2" @click="editSite(item.id)">mdi-pencil</v-icon>
-        <v-icon small @click="deleteSite(item.id)">mdi-delete</v-icon>
-      </template>
-      <template v-slot:no-data>
-        <v-btn color="primary" @click="initialize">Reset</v-btn>
-      </template>
-    </v-data-table>
+          <v-btn color="blue darken-1" text @click="close">Cancel</v-btn>
+          <v-btn color="blue darken-1" text @click="save">Save</v-btn>
+        </v-dialog>
 
-    <v-card max-width="600" class="mx-auto">
-      <link href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" rel="stylesheet">
-      <v-btn v-on:click="addSite" class="ma-2" tile outlined color="blue">
-        <v-icon left dark>mdi-plus</v-icon>ADD
-      </v-btn>
-      <v-flex xs12>
-        <v-hover v-slot:default="{ hover }">
-          <v-list>
-            <v-list-item v-for="(site) in sites" v-bind:key="site.id" @click>
-              <v-list-item-content>
-                <v-list-item-title>
-                  <a v-bind:href="site.url" target="_blank">{{ site.name }}</a>
-                </v-list-item-title>
-                <v-list-item-subtitle>{{ site.date | moment }}</v-list-item-subtitle>
-              </v-list-item-content>
-              <v-list-item-action>
-                <v-btn v-on:click="editSite(site.id)" class="ma-2" tile outlined color="green">
-                  <v-icon left>mdi-pencil</v-icon>EDIT
-                </v-btn>
-              </v-list-item-action>
-              <v-list-item-action>
-                <v-btn v-on:click="deleteSite(site.id)" class="ma-2" tile outlined color="red">
-                  <v-icon left>mdi-delete</v-icon>DEL
-                </v-btn>
-              </v-list-item-action>
-            </v-list-item>
-          </v-list>
-        </v-hover>
-      </v-flex>
-      <v-card-title>
-        localportalV2
         <v-spacer></v-spacer>
         <v-text-field
           v-model="search"
@@ -70,10 +19,16 @@
           single-line
           hide-details
         ></v-text-field>
-      </v-card-title>
-      <v-data-table :headers="headers" :items="sites" :search="search" hide-default-header></v-data-table>
-    </v-card>
-  </div>
+      </v-toolbar>
+    </template>
+    <template v-slot:item.action="{ item }">
+      <v-icon small class="mr-2" @click="editSite(item.id)">mdi-pencil</v-icon>
+      <v-icon small @click="deleteSite(item.id)">mdi-delete</v-icon>
+    </template>
+    <template v-slot:no-data>
+      <v-btn color="primary" @click="initialize">Reset</v-btn>
+    </template>
+  </v-data-table>
 </template>
 
 <script>
