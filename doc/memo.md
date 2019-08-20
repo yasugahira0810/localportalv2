@@ -35,7 +35,7 @@ var hoge = function (){...};			// 無名関数。関数名決めなくてよく�
 var hoge = () => {...};						// アロー関数。functionの代わり
 ```
 
-### フィルタリの参考サイト
+### フィルタの参考サイト
 
 - [Vue Filter And Search | Vuetify](https://codesandbox.io/s/536mvppkq4)
 - [Vuetify公式Data tables](https://vuetifyjs.com/ja/components/data-tables)
