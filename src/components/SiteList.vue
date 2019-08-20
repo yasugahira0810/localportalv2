@@ -122,11 +122,6 @@ export default {
       this.close();
     }
   },
-  filters: {
-    moment: function(date) {
-      return moment(date).format("YYYY/MM/DD hh:mm:ss");
-    }
-  },
   computed: {
     formTitle() {
       return this.editedIndex === -1 ? "New Item" : "Edit Item";
