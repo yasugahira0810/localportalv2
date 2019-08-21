@@ -48,3 +48,12 @@ var hoge = () => {...};						// アロー関数。functionの代わり
   なので暫定対処頑張るのではなく、data tableの項目にfilterかます方向に倒そうと思う。そのうちやる。
 
 Deprecation warning: value provided is not in a recognized RFC2822 or ISO format. moment construction falls back to js Date(), which is not reliable across all browsers and versions. Non RFC2822/ISO date formats are discouraged and will be removed in an upcoming major release. Please refer to http://momentjs.com/guides/#/warnings/js-date/ for more info.
+
+### 時刻フォーマット機能の実装
+
+[Vuetify.jsのData tablesでフィルタリングを行う](https://qiita.com/d-yosh/items/9299389b32c496a9b64c)を確認したところ、あるカラムに対してフィルタをかける場合にはcustom-filterを使うのが良さそう。ちなみにちょっと試した感じ、複数のフィルタ（custom-filterではなく普通のフィルタ）をかける方法がわからなかった。具体的には、:filter="filter" search="大阪府"の記述を既存のコードに入れたところ、searchは２個指定できないと怒られた。search="大阪府"のsearchを別の文字列にするとこのフィルタが動かなくなってしまった。searchは１つで済むよう関数側でうまくやる必要がある？今回はcustom-filterを使うから関係なさそうだが、よくわからなかったポイントとして記録しておく。
+
+```html
+<v-data-table :headers="headers" :items="sites" :search="search" :filter="filter" search="大阪府">
+```
+
