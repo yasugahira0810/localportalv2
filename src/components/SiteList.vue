@@ -1,5 +1,5 @@
 <template>
-  <v-data-table :headers="headers" :items="sites" :search="search">
+  <v-data-table :headers="headers" :items="formatDate" :search="search">
     <template v-slot:top>
       <v-toolbar flat color="white">
         <v-dialog v-model="dialog" max-width="500px">
@@ -125,6 +125,13 @@ export default {
   computed: {
     formTitle() {
       return this.editedIndex === -1 ? "New Item" : "Edit Item";
+    },
+    formatDate() {
+      moment.locale("ja");
+      for (var i = 0; i < this.sites.length; i++) {
+        this.sites[i]["date"] = moment(this.sites[i]["date"]).format("lll");
+      }
+      return this.sites;
     }
   }
 };
