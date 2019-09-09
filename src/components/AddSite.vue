@@ -7,15 +7,19 @@
     <v-form>
       <v-container grid-list-xl>
         <v-layout wrap>
-          <v-flex xs12 md4>
+          <v-flex xs12 md3>
             <v-text-field v-model="siteName" label="Site Name" required></v-text-field>
           </v-flex>
 
-          <v-flex xs12 md4>
+          <v-flex xs12 md3>
             <v-text-field v-model="siteURL" label="Site URL" required></v-text-field>
           </v-flex>
 
-          <v-flex xs12 md4>
+          <v-flex xs12 md3>
+            <v-text-field v-model="siteTags" label="Tags" required></v-text-field>
+          </v-flex>
+
+          <v-flex xs12 md3>
             <v-btn v-on:click="addSite()" text icon color="green">
               <v-icon>mdi-check-circle</v-icon>
             </v-btn>
@@ -31,7 +35,8 @@ export default {
   data() {
     return {
       siteName: "",
-      siteURL: ""
+      siteURL: "",
+      siteTags: ""
     };
   },
   methods: {
@@ -40,6 +45,7 @@ export default {
       const siteInfo = {
         name: this.siteName,
         url: this.siteURL,
+        tags: this.siteTags,
         date: new Date()
       };
       fetch("http://localhost:3000/sites", {
@@ -52,7 +58,9 @@ export default {
         .then(() => {
           this.siteName = "";
           this.siteURL = "";
+          this.siteTags = "";
           this.$router.push("/");
+          console.log(siteInfo);
         })
         .catch(err => console.log(err));
     },

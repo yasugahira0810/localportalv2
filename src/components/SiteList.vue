@@ -43,7 +43,7 @@ export default {
         { text: "Name", value: "name" },
         { text: "URL", value: "url" },
         { text: "Date", value: "date" },
-        { text: "Tag", value: "tag" },
+        { text: "Tags", value: "tags" },
         { text: "Actions", value: "action", sortable: false }
       ],
       editedIndex: -1,
