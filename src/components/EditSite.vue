@@ -7,6 +7,7 @@
     <br>
     <input v-model="siteName" placeholder="Site Name">
     <input v-model="siteURL" placeholder="SiteURL">
+    <input v-model="siteTags" placeholder="Tags">
     <v-btn v-on:click="editSite()" text icon color="green">
       <v-icon>mdi-check-circle</v-icon>
     </v-btn>
@@ -17,7 +18,8 @@ export default {
   data() {
     return {
       siteName: "",
-      siteURL: ""
+      siteURL: "",
+      siteTags: ""
     };
   },
   created() {
@@ -27,6 +29,7 @@ export default {
       .then(data => {
         this.siteName = data.name;
         this.siteURL = data.url;
+        this.siteTags = data.tags;
       })
       .catch(err => console.log(err));
   },
@@ -34,7 +37,11 @@ export default {
     editSite() {
       if (this.siteName === "" || this.siteURL === "") return;
       const id = this.$route.params.id;
-      const siteInfo = { name: this.siteName, url: this.siteURL };
+      const siteInfo = {
+        name: this.siteName,
+        url: this.siteURL,
+        tags: this.siteTags
+      };
       fetch(`http://localhost:3000/sites/${id}`, {
         method: "PUT",
         headers: { "Content-type": "application/json" },
@@ -43,6 +50,7 @@ export default {
         .then(() => {
           this.siteName = "";
           this.siteURL = "";
+          this.siteTags = "";
           this.$router.push("/");
         })
         .catch(err => console.log(err));
