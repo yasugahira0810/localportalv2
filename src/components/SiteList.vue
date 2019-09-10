@@ -21,6 +21,9 @@
         ></v-text-field>
       </v-toolbar>
     </template>
+    <template v-slot:item.tags="{ item }">
+      <v-chip color="blue" dark>{{item.tags}}</v-chip>
+    </template>
     <template v-slot:item.action="{ item }">
       <v-icon small class="mr-2" @click="editSite(item.id)">mdi-pencil</v-icon>
       <v-icon small @click="deleteSite(item.id)">mdi-delete</v-icon>
