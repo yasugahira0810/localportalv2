@@ -10,17 +10,17 @@ npm install
 npm run serve
 ```
 
-### Compiles and minifies for production(**Not confirmed**)
+### Compiles and minifies for production
 ```
 npm run build
 ```
 
-### Run your tests(**Not confirmed**)
+### Run your tests
 ```
 npm run test
 ```
 
-### Lints and fixes files(**Not confirmed**)
+### Lints and fixes files
 ```
 npm run lint
 ```
